@@ -49,5 +49,8 @@
   ],
   "exports": {
     ".": "./dist/render_svg.js"
+  },
+  "bin": {
+    "render_svg": "./render_svg.js"
   }
 }

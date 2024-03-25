@@ -1,6 +1,6 @@
 import { launch, LaunchOptions, BrowserLaunchArgumentOptions } from "puppeteer";
 
-export function parse_args() {
+export function main() {
 	const args = process.argv.slice(2);
 	return import('yargs')
 		.then((yargs) => yargs.default(args)).then((yinst) => {
@@ -32,7 +32,34 @@ export function parse_args() {
 					},
 
 				}).argv;
-		});
+		}).then((opt) => {
+			let src = `${opt._[0]}`;
+			let uri = undefined;
+			let path = undefined;
+			if (src.indexOf('://') < 0) {
+				path = src;
+			} else {
+				uri = src;
+			}
+			function tp(x: string) {
+				if (x.startsWith('p')) {
+					return 'png';
+				} else if (x.startsWith('j')) {
+					return 'jpeg';
+				} else if (x.startsWith('w')) {
+					return 'webp';
+				}
+				return undefined;
+			}
+
+			return render_svg({
+				uri, path,
+				output: opt._[1] ? `${opt._[1]}` : undefined,
+				quality: opt.quality,
+				type: opt.type ? tp(opt.type) : undefined,
+			})
+		})
+		;
 }
 
 export async function render_svg({
@@ -130,30 +157,3 @@ export async function render_svg({
 	await browser.close();
 };
 
-parse_args().then(async (opt) => {
-	let src = `${opt._[0]}`;
-	let uri = undefined;
-	let path = undefined;
-	if (src.indexOf('://') < 0) {
-		path = src;
-	} else {
-		uri = src;
-	}
-	function tp(x: string) {
-		if (x.startsWith('p')) {
-			return 'png';
-		} else if (x.startsWith('j')) {
-			return 'jpeg';
-		} else if (x.startsWith('w')) {
-			return 'webp';
-		}
-		return undefined;
-	}
-
-	render_svg({
-		uri, path,
-		output: opt._[1] ? `${opt._[1]}` : undefined,
-		quality: opt.quality,
-		type: opt.type ? tp(opt.type) : undefined,
-	})
-})
