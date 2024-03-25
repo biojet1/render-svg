@@ -1,0 +1,53 @@
+{
+  "name": "render-svg",
+  "version": "0.0.1",
+  "description": "Using puppeteer, converts svg files to png, jpeg, or webp ",
+  "type": "module",
+  "license": "GPL-3.0 license",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "https://github.com/biojet1/render-svg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/biojet1/render-svg"
+  },
+  "bugs": "",
+  "keywords": [
+    "svg",
+    "convert",
+    "png",
+    "webp",
+    "jpeg",
+    "puppeteer",
+    "render"
+  ],
+  "author": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "contributors": [],
+  "scripts": {
+    "dev": "",
+    "test": ""
+  },
+  "devDependencies": {
+    "@types/yargs": "^17.0.32",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "puppeteer": "^22.6.0",
+    "tap": "^18.7.1",
+    "yargs": "^17.7.2"
+  },
+  "files": [
+    "dist",
+    "*.js"
+  ],
+  "exports": {
+    ".": "./dist/render_svg.js"
+  }
+}
