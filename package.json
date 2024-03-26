@@ -29,7 +29,7 @@
     "c8rephtml": "c8 report -r html",
     "compile": "npx tsc -d --sourcemap",
     "clean": "rm dist/*.*",
-    "test": "c8 npx tap -t600  --disable-coverage --reporter=terse 'test/**/*.tap.*js'"
+    "test": "c8 npx tap -t600 --disable-coverage --reporter=terse 'test/**/*.tap.*js'"
   },
   "devDependencies": {
     "@types/yargs": "^17.0.32",
