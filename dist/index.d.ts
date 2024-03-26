@@ -1,6 +1,5 @@
 import { LaunchOptions, BrowserLaunchArgumentOptions } from "puppeteer";
-export declare function main(): Promise<void>;
-export declare function render_svg({ uri, path, output, width, height, par, quality, puppeteer_options, type }: {
+export declare function render_svg({ uri, path, output, width, height, par, quality, puppeteer_options, type, }: {
     uri?: string;
     path?: string;
     output?: string;
@@ -8,6 +7,6 @@ export declare function render_svg({ uri, path, output, width, height, par, qual
     height?: number;
     par?: string;
     quality?: number;
-    type?: 'png' | 'jpeg' | 'webp';
+    type?: "png" | "jpeg" | "webp";
     puppeteer_options?: BrowserLaunchArgumentOptions & LaunchOptions;
 }): Promise<void>;
