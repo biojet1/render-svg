@@ -4,6 +4,7 @@ export function main() {
     return import('yargs')
         .then((yargs) => yargs.default(args)).then((yinst) => {
         return yinst
+            .usage('$0 <svg> <output>', 'convert svg file to png, webp, jpeg ')
             .strict()
             .help()
             .version()
@@ -31,9 +32,11 @@ export function main() {
             },
         }).argv;
     }).then((opt) => {
-        let src = `${opt._[0]}`;
+        let src = opt.svg;
+        // console.log(opt);
         let uri = undefined;
         let path = undefined;
+        let output = opt.output;
         if (src.indexOf('://') < 0) {
             path = src;
         }
@@ -54,7 +57,7 @@ export function main() {
         }
         return render_svg({
             uri, path,
-            output: opt._[1] ? `${opt._[1]}` : undefined,
+            output,
             quality: opt.quality,
             type: opt.type ? tp(opt.type) : undefined,
         });
@@ -140,4 +143,3 @@ export async function render_svg({ uri, path, output, width, height, par, qualit
     await browser.close();
 }
 ;
-//# sourceMappingURL=render_svg.js.map
