@@ -31,7 +31,7 @@
   },
   "contributors": [],
   "scripts": {
-    "dev": "",
+    "compile": "npx tsc -d --sourcemap",
     "test": ""
   },
   "devDependencies": {
