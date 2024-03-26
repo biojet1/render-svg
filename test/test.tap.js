@@ -35,11 +35,16 @@ test.test("test no uri, path", async (t) => {
     await t.rejects(p);
 });
 
-test.test("test path", async (t) => {
-    let p = render_svg({
+test.test("test blob", async (t) => {
+    return render_svg({
+        type: 'webp',
         path: "test/E8_graph.svg",
+    }).then((blob) => {
+        // console.log(typeof blob);
+        t.same(typeof blob, 'object', 'blob');
+        fs.writeFileSync('/tmp/E8_graph.webp', blob);
+        // t.end();
     });
-    await t.rejects(p);
 });
 
-// TODO blob output
+

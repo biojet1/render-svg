@@ -55,11 +55,18 @@ export function main() {
             }
             return undefined;
         }
-        return render_svg({
+        if (!output) {
+            throw new Error(`No output`);
+        }
+        render_svg({
             uri, path,
             output,
             quality: opt.quality,
             type: opt.type ? tp(opt.type) : undefined,
+        }).then((blob) => {
+            if (blob && output == '-') {
+                process.stdout.write(blob);
+            }
         });
     });
 }

@@ -61,40 +61,31 @@ export async function render_svg({ uri, path, output, width, height, par, qualit
         ];
     }, width, height, par);
     process.stderr.write(`${svg_rect[2]}x${svg_rect[3]} ${uri} -> ${output}`);
-    try {
-        if (output == "-") {
-            let bin = await page.screenshot({
-                quality,
-                encoding: "binary",
-                type,
-                clip: {
-                    x: svg_rect[0],
-                    y: svg_rect[1],
-                    width: svg_rect[2],
-                    height: svg_rect[3],
-                },
-                omitBackground: true,
-            });
-            process.stdout.write(bin);
-        }
-        else if (output) {
-            await page.screenshot({
-                path: output,
-                clip: {
-                    x: svg_rect[0],
-                    y: svg_rect[1],
-                    width: svg_rect[2],
-                    height: svg_rect[3],
-                },
-                omitBackground: true,
-            });
-        }
-        else {
-            throw new Error(`No output`);
-        }
+    let params = {
+        clip: {
+            x: svg_rect[0],
+            y: svg_rect[1],
+            width: svg_rect[2],
+            height: svg_rect[3],
+        },
+        omitBackground: true,
+    };
+    let bin = undefined;
+    if (output) {
+        await page.screenshot({
+            path: output,
+            ...params
+        });
     }
-    finally {
-        await browser.close();
+    else {
+        bin = await page.screenshot({
+            quality,
+            encoding: "binary",
+            type,
+            ...params
+        });
     }
+    await browser.close();
+    return bin;
 }
 //# sourceMappingURL=index.js.map
