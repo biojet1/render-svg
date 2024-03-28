@@ -1,5 +1,5 @@
 import { launch } from "puppeteer";
-export async function render_svg({ uri, path, output, width, height, par, quality, puppeteer_options, type, }) {
+export async function render_svg({ uri, path, output, width, height, par, quality, puppeteer_options, type, bgcolor }) {
     if (!uri) {
         if (path) {
             const url = await import("url");
@@ -18,7 +18,7 @@ export async function render_svg({ uri, path, output, width, height, par, qualit
     const browser = await launch(puppeteer_options);
     const page = await browser.newPage();
     await page.goto(uri);
-    let svg_rect = await page.evaluate((w, h, a) => {
+    let svg_rect = await page.evaluate((w, h, a, b) => {
         var root = document.rootElement;
         if (!(root.viewBox.baseVal.width > 0)) {
             let { value } = root.width.baseVal;
@@ -34,6 +34,9 @@ export async function render_svg({ uri, path, output, width, height, par, qualit
         }
         if (a) {
             root.setAttribute("preserveAspectRatio", a);
+        }
+        if (b) {
+            root.style.backgroundColor = b;
         }
         if (!w) {
             if (h) {
@@ -59,8 +62,8 @@ export async function render_svg({ uri, path, output, width, height, par, qualit
             root.width.baseVal.value,
             root.height.baseVal.value,
         ];
-    }, width, height, par);
-    process.stderr.write(`${svg_rect[2]}x${svg_rect[3]} ${uri} -> ${output}`);
+    }, width, height, par, bgcolor);
+    // process.stderr.write(`${svg_rect[2]}x${svg_rect[3]} ${uri} -> ${output}`);
     let params = {
         clip: {
             x: svg_rect[0],
@@ -88,4 +91,3 @@ export async function render_svg({ uri, path, output, width, height, par, qualit
     await browser.close();
     return bin;
 }
-//# sourceMappingURL=index.js.map

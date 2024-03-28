@@ -14,6 +14,7 @@ Options:
   --quality  Quality of the image, between 0-100. Not applicable to png images
                                                                         [number]
   --type     image type if piping to stdout     [choices: "png", "jpeg", "webp"]
+  --bgcolor  set backgroung color                                       [string]
 ```
 
 ## Installation

@@ -9,11 +9,12 @@ export async function render_svg({
 	par,
 	quality,
 	puppeteer_options,
-	type,
+	type, bgcolor
 }: {
 	uri?: string;
 	path?: string;
 	output?: string;
+	bgcolor?: string;
 	width?: number;
 	height?: number;
 	par?: string;
@@ -41,7 +42,7 @@ export async function render_svg({
 	const page = await browser.newPage();
 	await page.goto(uri);
 	let svg_rect = await page.evaluate(
-		(w, h, a) => {
+		(w, h, a, b) => {
 			var root = document.rootElement as SVGSVGElement;
 			if (!(root.viewBox.baseVal.width > 0)) {
 				let { value } = root.width.baseVal;
@@ -57,6 +58,9 @@ export async function render_svg({
 			}
 			if (a) {
 				root.setAttribute("preserveAspectRatio", a);
+			}
+			if (b) {
+				root.style.backgroundColor = b;
 			}
 			if (!w) {
 				if (h) {
@@ -83,7 +87,7 @@ export async function render_svg({
 		},
 		width,
 		height,
-		par
+		par, bgcolor
 	);
 
 	// process.stderr.write(`${svg_rect[2]}x${svg_rect[3]} ${uri} -> ${output}`);

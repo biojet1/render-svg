@@ -27,12 +27,17 @@ export function main() {
                 type: 'number',
             },
             type: {
-                describe: `image type if piping to stdout `,
+                describe: `image type if piping to stdout`,
                 choices: ['png', 'jpeg', 'webp']
+            },
+            bgcolor: {
+                describe: `set backgroung color`,
+                type: 'string',
             },
         }).argv;
     }).then((opt) => {
-        let src = opt.svg;
+        const { bgcolor, svg, quality, type, width, height } = opt;
+        let src = svg;
         // console.log(opt);
         let uri = undefined;
         let path = undefined;
@@ -60,9 +65,9 @@ export function main() {
         }
         render_svg({
             uri, path,
-            output,
-            quality: opt.quality,
-            type: opt.type ? tp(opt.type) : undefined,
+            output, width, height,
+            quality, bgcolor,
+            type: type ? tp(type) : undefined,
         }).then((blob) => {
             if (blob && output == '-') {
                 process.stdout.write(blob);
@@ -70,4 +75,3 @@ export function main() {
         });
     });
 }
-//# sourceMappingURL=main.js.map
