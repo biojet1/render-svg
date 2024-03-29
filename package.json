@@ -1,6 +1,6 @@
 {
-  "name": "render-svg",
-  "version": "0.0.1",
+  "name": "svgrast",
+  "version": "0.0.2",
   "description": "Using puppeteer, convert svg files to png, jpeg, or webp ",
   "type": "module",
   "license": "GPL-3.0 license",
@@ -9,10 +9,10 @@
     "node": ">= 14.0.0",
     "npm": ">= 6.0.0"
   },
-  "homepage": "https://github.com/biojet1/render-svg",
+  "homepage": "https://github.com/biojet1/svgrast",
   "repository": {
     "type": "git",
-    "url": "https://github.com/biojet1/render-svg"
+    "url": "https://github.com/biojet1/svgrast"
   },
   "bugs": "",
   "keywords": [
@@ -33,11 +33,11 @@
   },
   "devDependencies": {
     "@types/yargs": "^17.0.32",
+    "tap": "^18.7.1",
     "typescript": "^5.4.3"
   },
   "dependencies": {
     "puppeteer": "^22.6.0",
-    "tap": "^18.7.1",
     "yargs": "^17.7.2"
   },
   "files": [
@@ -49,11 +49,11 @@
     "./cli": "./dist/main.js"
   },
   "bin": {
-    "render_svg": "./render_svg.js"
+    "svgrast": "./svgrast.js"
   },
   "c8": {
-    "reports-dir": "/tmp/render_svg.c8/rep",
-    "temp-directory": "/tmp/render_svg.c8/tmp",
+    "reports-dir": "/tmp/svgrast.c8/rep",
+    "temp-directory": "/tmp/svgrast.c8/tmp",
     "src": "dist"
   },
   "prettier": {

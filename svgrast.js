@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import('render-svg/cli')
+import('svgrast/cli')
 	.then(({ main }) => main())
 	.catch((err) => {
 		throw err;

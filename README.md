@@ -1,7 +1,7 @@
-# render-svg
+# SVGRast
 
 ```
-render_svg <svg> <output>
+svgrast <svg> <output>
 
 convert svg file to png, webp, jpeg
 
@@ -20,11 +20,11 @@ Options:
 ## Installation
 
 ```
-npm i -g https://github.com/biojet1/render-svg
+npm i -g https://github.com/biojet1/svgrast
 ```
 
 ## Usage
 
 ```
-npx render_svg https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/car.svg  car.webp
+npx svgrast https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/car.svg car.webp
 ```

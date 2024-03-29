@@ -1,7 +1,7 @@
 "uses strict";
 import test from "tap";
 import fs from "fs";
-import { render_svg } from "render-svg";
+import { render_svg } from "svgrast";
 
 test.test("test uri", (t) => {
     let dest = "/tmp/car.png";
