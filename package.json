@@ -1,7 +1,7 @@
 {
   "name": "render-svg",
   "version": "0.0.1",
-  "description": "Using puppeteer, converts svg files to png, jpeg, or webp ",
+  "description": "Using puppeteer, convert svg files to png, jpeg, or webp ",
   "type": "module",
   "license": "GPL-3.0 license",
   "private": false,
@@ -55,5 +55,8 @@
     "reports-dir": "/tmp/render_svg.c8/rep",
     "temp-directory": "/tmp/render_svg.c8/tmp",
     "src": "dist"
+  },
+  "prettier": {
+    "useTabs": true
   }
 }
